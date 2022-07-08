@@ -30,13 +30,6 @@ public class NewExample {
         driver.manage().window().maximize();
         driver.get("https://demo.guru99.com/test/newtours/");
 
-        //accept all cookies
-        driver.switchTo().frame("gdpr-consent-notice");
-        WebElement cookiesButton= driver.findElement(By.id("save"));
-        cookiesButton.click();
-        driver.switchTo().defaultContent();
-        //driver.navigate().to("https://demo.guru99.com/test/newtours/");
-
         //Login with created user
         WebElement userName = driver.findElement(By.name("userName"));
         userName.sendKeys("aa");
@@ -47,13 +40,21 @@ public class NewExample {
         WebElement buttonSubmit= driver.findElement(By.name("submit"));
         buttonSubmit.click();
 
+        //accept all cookies
+        //Thread.sleep(2000);
+        driver.switchTo().frame("gdpr-consent-notice");
+        WebElement cookiesButton= driver.findElement(By.id("save"));
+        cookiesButton.click();
+        driver.switchTo().defaultContent();
+
         //back to home
         Thread.sleep(2000);
         driver.findElement(By.linkText("Home")).click();
 
         //Are tour tips displayed
         Thread.sleep(2000);
-        boolean status = driver.findElement(By.xpath(("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[1]/table[2]/tbody/tr[3]/td[1]/img"))).isDisplayed();
+        boolean status = driver.findElement(By.xpath(("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/" +
+                "td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[1]/table[2]/tbody/tr[3]/td[1]/img"))).isDisplayed();
         System.out.println("Element displayed is :" + status);
 
         //navigate to Destination
@@ -68,11 +69,11 @@ public class NewExample {
 
         //sign out
         //Check for element's presence
-        List<WebElement> dynamicElement = driver.findElements(By.linkText("SIGN-OUT"));
+        List<WebElement> listOfElements = driver.findElements(By.linkText("SIGN-OUT"));
 
         System.out.println("Looking for button 'SIGN-OUT'....");
 
-        if(dynamicElement.size() != 0)
+        if(listOfElements.size() != 0)
             System.out.println("Button 'SIGN-OUT' exist!!");
         else
             System.out.println("Button 'SIGN-OUT' doesn't exist! You're automatically out!! ");

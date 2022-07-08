@@ -26,16 +26,5 @@ public class HelloWorld {
         driver.close();
         driver.quit();
 
-        /*try {
-            driver.navigate().to("https://bing.com");
-
-            WebElement element = driver.findElement(By.id("sb_form_q"));
-            element.sendKeys("WebDriver");
-            element.submit();
-
-            Thread.sleep(5000);
-        } finally {
-            driver.quit();
-        }*/
     }
 }
